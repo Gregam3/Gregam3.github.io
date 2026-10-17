@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greg Mitten · Timeline</title>
+<meta name="description" content="Greg Mitten, Full Stack Java and Kotlin Engineer and Founder of Statlocker. A timeline of coding since 2012.">
+<link rel="icon" href="assets/logo-icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600&family=Fira+Mono:wght@500&family=Rajdhani:wght@500;600;700&family=Saira+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens from the Statlocker Master Design (design-system/tokens.css). */
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #121212;
+    --card-inner-bg: #181818;
+    --surface-hover: #1c1c1c;
+    --text-primary: #f7fafc;
+    --text-color: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --ominous-green: #69e799;
+    --ominous-green-rgb: 105, 231, 153;
+    --ghost-green-06: rgba(105, 231, 153, 0.06);
+    --ghost-green-12: rgba(105, 231, 153, 0.12);
+    --ghost-green-28: rgba(105, 231, 153, 0.28);
+    --deeply-ominous-green: #376947;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-color: #303030;
+    --border-strong: rgba(255, 255, 255, 0.2);
+
+    --font-display: "Saira Condensed", sans-serif;
+    --font-data: "Rajdhani", sans-serif;
+    --font-mono: "Fira Mono", monospace;
+    --font-body: "Barlow", sans-serif;
+
+    --font-xs: clamp(10px, 9.296px + 0.188vw, 12px);
+    --font-sm: clamp(11px, 10.296px + 0.188vw, 13px);
+    --font-base: clamp(12px, 11.296px + 0.188vw, 14px);
+    --font-md: clamp(13.5px, 12.62px + 0.235vw, 16px);
+    --font-lg: clamp(17px, 15.944px + 0.282vw, 20px);
+    --font-xl: clamp(20.5px, 19.268px + 0.329vw, 24px);
+    --font-2xl: clamp(27px, 25.239px + 0.469vw, 32px);
+    --font-3xl: clamp(34px, 31.887px + 0.563vw, 40px);
+    --font-hero: clamp(64px, 40px + 7vw, 132px);
+
+    --space-xs: clamp(2px, 1.296px + 0.188vw, 4px);
+    --space-sm: clamp(4px, 2.592px + 0.376vw, 8px);
+    --space-md: clamp(8px, 6.592px + 0.376vw, 12px);
+    --space-lg: clamp(12px, 10.592px + 0.376vw, 16px);
+    --space-xl: clamp(16px, 13.183px + 0.751vw, 24px);
+    --space-2xl: clamp(24px, 21.183px + 0.751vw, 32px);
+    --space-3xl: clamp(32px, 26.366px + 1.502vw, 48px);
+
+    --tracking-label: 0.04em;
+    --elevation-card: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    --motion-fast: 120ms;
+    --motion-base: 200ms;
+    --motion-slow: 300ms;
+    --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+    --spine-x: 50%;
+    --node: 12px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-data);
+    font-weight: 500;
+    font-size: var(--font-md);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+/* Faint grid behind everything: data-room texture, no blur, no glow. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ominous-green); outline-offset: 2px; }
+
+.page { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 1.4vw, 24px); }
+
+/* ---------- Top bar ---------- */
+.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+.topbar img { height: clamp(22px, 2vw, 28px); display: block; }
+.topbar nav { display: flex; gap: var(--space-lg); }
+.topbar nav a {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-sm);
+    color: var(--text-secondary); text-decoration: none;
+    transition: color var(--motion-fast) var(--motion-ease);
+}
+.topbar nav a:hover { color: var(--ominous-green); }
+
+/* ---------- Hero ---------- */
+.hero { text-align: center; padding: var(--space-3xl) 0 var(--space-2xl); }
+.hero h1 {
+    margin: 0;
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+    font-size: var(--font-3xl); letter-spacing: var(--tracking-label);
+    color: var(--text-primary); line-height: 1.2;
+}
+.hero .sub { margin: var(--space-xs) 0 0; color: var(--text-secondary); font-size: var(--font-md); }
+
+.years {
+    margin: var(--space-2xl) auto 0;
+    display: inline-flex; flex-direction: column; align-items: center;
+}
+.years .num {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--font-hero); line-height: 0.9;
+    color: var(--ominous-green);
+    font-variant-numeric: tabular-nums;
+}
+.years .label {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-lg); color: var(--text-primary);
+    margin-top: var(--space-sm);
+}
+.years .exact { font-family: var(--font-mono); font-size: var(--font-sm); color: var(--text-muted); margin-top: var(--space-xs); font-variant-numeric: tabular-nums; }
+
+.kpis {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: var(--space-2xl) auto 0; max-width: 820px;
+    border: 1px solid var(--border-color); background: var(--card-bg);
+    box-shadow: var(--elevation-card);
+}
+.kpi { padding: var(--space-lg) var(--space-md); text-align: center; }
+.kpi + .kpi { border-left: 1px solid var(--border-color); }
+.kpi .v {
+    font-family: var(--font-data); font-weight: 700; font-size: var(--font-2xl);
+    color: var(--text-primary); line-height: 1.1; font-variant-numeric: tabular-nums;
+}
+.kpi .l {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-xs); color: var(--text-secondary);
+}
+
+/* ---------- Section header (R-018 / R-019) ---------- */
+.section-head {
+    position: relative; margin: var(--space-3xl) 0 var(--space-2xl);
+    padding-bottom: var(--space-sm); border-bottom: 1px solid var(--border-color);
+    display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-md);
+}
+.section-head::after {
+    content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 40%;
+    background: linear-gradient(90deg, var(--ominous-green), transparent); opacity: 0.6;
+}
+.section-head h2 {
+    margin: 0; font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-lg); color: var(--text-primary);
+}
+.legend { display: flex; gap: var(--space-lg); flex-wrap: wrap; }
+.legend span {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-xs); color: var(--text-secondary);
+}
+.legend i { width: 8px; height: 8px; display: inline-block; transform: rotate(45deg); }
+
+/* ---------- Timeline ---------- */
+.timeline { position: relative; padding: var(--space-lg) 0 var(--space-3xl); }
+.spine, .spine-fill {
+    position: absolute; top: 0; bottom: 0; left: var(--spine-x); width: 2px; margin-left: -1px;
+}
+.spine { background: var(--border-color); }
+.spine-fill {
+    background: linear-gradient(180deg, var(--deeply-ominous-green), var(--ominous-green));
+    transform-origin: top; transform: scaleY(0);
+}
+
+.year-mark {
+    position: relative; display: flex; justify-content: center;
+    margin: var(--space-xl) 0 var(--space-lg);
+}
+.year-mark span {
+    position: relative; z-index: 2;
+    font-family: var(--font-mono); font-size: var(--font-sm); color: var(--text-secondary);
+    background: var(--bg-color); border: 1px solid var(--border-color);
+    padding: 2px var(--space-md); font-variant-numeric: tabular-nums;
+    transition: color var(--motion-base) var(--motion-ease), border-color var(--motion-base) var(--motion-ease);
+}
+.year-mark.passed span { color: var(--ominous-green); border-color: var(--ghost-green-28); }
+
+.entry {
+    position: relative; display: grid; grid-template-columns: 1fr 1fr;
+    column-gap: calc(var(--space-3xl) * 1.5); margin-bottom: var(--space-xl);
+}
+.entry .card { grid-column: 1; }
+.entry.right .card { grid-column: 2; }
+
+.node {
+    position: absolute; top: 26px; left: var(--spine-x);
+    width: var(--node); height: var(--node); margin-left: calc(var(--node) / -2);
+    transform: rotate(45deg); background: var(--bg-color);
+    border: 2px solid var(--border-strong); z-index: 2;
+    transition: background var(--motion-base) var(--motion-ease), border-color var(--motion-base) var(--motion-ease);
+}
+.entry.passed .node { border-color: var(--kind); background: var(--kind); }
+
+/* connector from card edge to node */
+.entry .card::before {
+    content: ""; position: absolute; top: 31px; height: 1px; width: calc(var(--space-3xl) * 0.75 - 6px);
+    background: var(--border-color);
+}
+.entry.left .card::before { right: calc(var(--space-3xl) * -0.75); }
+.entry.right .card::before { left: calc(var(--space-3xl) * -0.75); }
+
+.card {
+    position: relative;
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    box-shadow: var(--elevation-card);
+    padding: var(--space-lg) var(--space-xl);
+    transition: border-color var(--motion-base) var(--motion-ease), background var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-ease);
+}
+.card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+
+/* kind strip along the top edge */
+.card::after {
+    content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 2px;
+    background: var(--kind); opacity: 0.85;
+}
+
+.card-head { display: flex; gap: var(--space-md); align-items: flex-start; }
+.mono-plate {
+    flex: none; width: 40px; height: 40px; display: grid; place-items: center;
+    background: var(--card-inner-bg); border: 1px solid var(--border-color);
+    font-family: var(--font-display); font-weight: 700; font-size: var(--font-md);
+    color: var(--kind); letter-spacing: 0.02em;
+}
+.mono-plate img { width: 100%; height: 100%; display: block; }
+.card-titles { min-width: 0; flex: 1; }
+.org {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-lg); color: var(--text-primary);
+    line-height: 1.2; margin: 0;
+}
+.role { color: var(--text-secondary); font-size: var(--font-md); font-weight: 600; line-height: 1.3; }
+
+.meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+}
+.dates { font-family: var(--font-mono); font-size: var(--font-sm); color: var(--text-color); font-variant-numeric: tabular-nums; }
+.dur {
+    font-family: var(--font-mono); font-size: var(--font-xs); color: var(--text-secondary);
+    border: 1px solid var(--border-color); padding: 1px 6px;
+}
+.kind-label {
+    margin-left: auto;
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-xs); color: var(--kind);
+}
+.desc { margin: var(--space-md) 0 0; color: var(--text-color); font-size: var(--font-md); }
+.points { margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
+.points li { position: relative; padding-left: 16px; color: var(--text-secondary); font-size: var(--font-base); }
+.points li::before { content: ""; position: absolute; left: 2px; top: 0.6em; width: 5px; height: 5px; background: var(--kind); transform: rotate(45deg); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-md); }
+.tag {
+    font-family: var(--font-mono); font-size: var(--font-xs); color: var(--text-secondary);
+    background: var(--card-inner-bg); border: 1px solid var(--border-subtle); padding: 2px 8px;
+}
+
+/* ---------- Now (Statlocker) ---------- */
+.entry.now .card {
+    border: 2px solid var(--ominous-green);
+    background:
+        linear-gradient(180deg, var(--ghost-green-06), transparent 60%),
+        var(--card-bg);
+    padding: var(--space-xl);
+}
+.entry.now .card::after { display: none; }
+.entry.now .node { width: 18px; height: 18px; margin-left: -9px; top: 28px; }
+.entry.now .node::after {
+    content: ""; position: absolute; inset: -7px; border: 1px solid var(--ominous-green);
+    animation: ping 2.2s var(--motion-ease) infinite;
+}
+@keyframes ping { 0% { opacity: 0.9; transform: scale(0.6); } 100% { opacity: 0; transform: scale(1.8); } }
+.now-logo { height: clamp(26px, 2.6vw, 36px); display: block; margin-bottom: var(--space-md); }
+.live {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-xs);
+    color: var(--bg-color); background: var(--ominous-green); padding: 2px 8px;
+}
+.live::before { content: ""; width: 6px; height: 6px; background: var(--bg-color); animation: blink 1.4s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+.now-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: var(--space-lg); border: 1px solid var(--border-color); }
+.now-stats div { padding: var(--space-md); text-align: center; background: var(--card-inner-bg); }
+.now-stats div + div { border-left: 1px solid var(--border-color); }
+.now-stats .v { font-family: var(--font-data); font-weight: 700; font-size: var(--font-xl); color: var(--ominous-green); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.now-stats .l { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); font-size: var(--font-xs); color: var(--text-secondary); }
+
+/* ---------- Origin ---------- */
+.entry.origin .org { font-size: var(--font-xl); }
+.entry.origin .code {
+    margin-top: var(--space-md); background: var(--card-inner-bg); border: 1px solid var(--border-subtle);
+    font-family: var(--font-mono); font-size: var(--font-sm); color: var(--text-secondary);
+    padding: var(--space-md); overflow-x: auto; white-space: pre; line-height: 1.6;
+}
+.code .k { color: var(--ominous-green); }
+.code .s { color: var(--text-primary); }
+
+/* ---------- Footer ---------- */
+footer {
+    border-top: 1px solid var(--border-subtle); padding: var(--space-2xl) 0 var(--space-3xl);
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-lg);
+}
+footer .contact { font-family: var(--font-mono); font-size: var(--font-sm); color: var(--text-secondary); }
+footer .contact a { color: var(--ominous-green); text-decoration: none; }
+footer .contact a:hover { text-decoration: underline; }
+.links { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+.btn {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: var(--font-sm);
+    color: var(--text-primary); text-decoration: none;
+    background: var(--card-inner-bg); border: 1px solid var(--border-color);
+    padding: var(--space-sm) var(--space-lg);
+    transition: border-color var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
+}
+.btn:hover { border-color: var(--ominous-green); color: var(--ominous-green); }
+.btn.primary { background: var(--ominous-green); color: var(--bg-color); border-color: var(--ominous-green); }
+.btn.primary:hover { background: var(--text-primary); border-color: var(--text-primary); color: var(--bg-color); }
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--motion-slow) var(--motion-ease), transform 500ms var(--motion-ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Reflow ---------- */
+@media (max-width: 768px) {
+    :root { --spine-x: 9px; }
+    .entry { grid-template-columns: minmax(0, 1fr); padding-left: 32px; }
+    .card { min-width: 0; padding: var(--space-lg); }
+    footer { flex-direction: column; align-items: flex-start; }
+    .entry .card, .entry.right .card { grid-column: 1; }
+    .entry.left .card::before, .entry.right .card::before { left: -23px; right: auto; width: 17px; }
+    .year-mark { justify-content: flex-start; }
+    .year-mark span { margin-left: 0; }
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi .l { overflow-wrap: anywhere; }
+    .kpi:nth-child(3) { border-left: 0; }
+    .kpi:nth-child(n+3) { border-top: 1px solid var(--border-color); }
+    .topbar nav { display: none; }
+    .section-head { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 414px) {
+    .now-stats { grid-template-columns: 1fr; }
+    .now-stats div + div { border-left: 0; border-top: 1px solid var(--border-color); }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .entry.now .node::after, .live::before { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <header class="topbar">
+        <a href="https://statlocker.gg" aria-label="Statlocker"><img src="assets/statlocker-logo-lockup.png" alt="Statlocker"></a>
+        <nav>
+            <a href="#timeline">Timeline</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Greg Mitten</h1>
+        <p class="sub">Full Stack Java &amp; Kotlin Engineer - Founder</p>
+        <div class="years">
+            <div class="num" id="years-num">0</div>
+            <div class="label">Years coding</div>
+            <div class="exact" id="years-exact"></div>
+        </div>
+        <div class="kpis">
+            <div class="kpi"><div class="v" id="kpi-roles">0</div><div class="l">Roles</div></div>
+            <div class="kpi"><div class="v">2</div><div class="l">First Class degrees</div></div>
+            <div class="kpi"><div class="v">4.9★</div><div class="l">Mentor rating</div></div>
+            <div class="kpi"><div class="v" id="kpi-sl-days">0</div><div class="l">Days on Statlocker</div></div>
+        </div>
+    </section>
+
+    <div class="section-head" id="timeline">
+        <h2>Timeline</h2>
+        <div class="legend" id="legend"></div>
+    </div>
+
+    <section class="timeline" id="tl">
+        <div class="spine"></div>
+        <div class="spine-fill" id="spine-fill"></div>
+    </section>
+
+    <footer id="contact">
+        <div class="contact">Open to conversations about software projects · <a href="mailto:me@greg-mitten.dev">me@greg-mitten.dev</a></div>
+        <div class="links">
+            <a class="btn primary" href="https://statlocker.gg">Statlocker</a>
+            <a class="btn" href="https://www.linkedin.com/in/gregory-mitten-5a0a06106">LinkedIn</a>
+            <a class="btn" href="https://mentorcruise.com/mentor/GregMitten/">MentorCruise</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+// Coding started at 16, Java at college. Everything that says "years" is computed from this.
+const CODING_START = new Date(2012, 8, 1);
+
+const KINDS = {
+    origin:    { label: "Origin",    color: "#69e799" },
+    education: { label: "Education", color: "#8fa8ff" },
+    work:      { label: "Work",      color: "#e0e0e0" },
+    teaching:  { label: "Teaching",  color: "#e8c547" },
+    founder:   { label: "Founder",   color: "#69e799" },
+};
+
+// start/end are [year, month(1-12), day?]; end null = present.
+const ENTRIES = [
+    { kind: "origin", org: "First line of Java", role: "Age 16, college", start: [2012, 9], end: null, noDur: true,
+      desc: "Started coding in Java for college. Never stopped.", plate: "16", code: true },
+    { kind: "education", org: "Bournemouth University", role: "BSc Software Engineering · First Class Honours", start: [2014, 9], end: [2018, 6], plate: "BU",
+      desc: "Four year degree with a year in industry.", tags: ["Java", "Software Engineering", "Weightlifting team"] },
+    { kind: "work", org: "JPMorgan Chase & Co.", role: "Technical Analyst Placement Intern", start: [2016, 7], end: [2017, 6], plate: "JP",
+      desc: "Small agile team building a RESTful platform for automated regression testing.",
+      tags: ["Java", "Spring", "Hibernate", "SQL", "AngularJS"] },
+    { kind: "work", org: "Bournemouth University", role: "Undergraduate Software Consultant", start: [2018, 5], end: [2018, 8], plate: "BU",
+      desc: "Hand picked by my dissertation supervisor to build a plugin based web scraper.", tags: ["Java", "Web scraping"] },
+    { kind: "education", org: "University of Sussex", role: "MSc Advanced Computer Science · First Class", start: [2018, 9], end: [2019, 9], plate: "US",
+      desc: "Postgraduate study, alongside client work." },
+    { kind: "work", org: "Catalyst Property Finance", role: "Independent Software Consultant", start: [2018, 9], end: [2019, 9], plate: "CP",
+      desc: "Took a client through the full development lifecycle to an enterprise system automating their operations." },
+    { kind: "work", org: "Adyen", role: "Software Engineer · Amsterdam", start: [2019, 9], end: [2020, 12], plate: "AD",
+      desc: "Payments at scale for Google, Netflix, Uber, Airbnb and more.",
+      points: ["Built the card data import / export tool used across Adyen", "Product owner of Autorescue: ML picked retry dates for billing"],
+      tags: ["Java", "Machine learning", "FinTech"] },
+    { kind: "teaching", org: "MentorCruise", role: "Mentor", start: [2019, 12], end: [2023, 3], plate: "MC",
+      desc: "Mentoring new engineers, 4.9 stars across reviews." },
+    { kind: "work", org: "Catalyst Property Finance", role: "Head of Data · Independent Software Engineer", start: [2020, 11], end: [2023, 3], plate: "CP",
+      desc: "Software to analyse, automate and scale the business, including proprietary marketing tooling.",
+      tags: ["Data", "Automation", "AWS", "Docker"] },
+    { kind: "founder", org: "OPPI", role: "Founder · Opportunity starts here", start: [2022, 7], end: [2025, 4], plate: "OP",
+      desc: "Took the Catalyst marketing software to market with AI on top.", tags: ["AI", "SaaS"] },
+    { kind: "teaching", org: "Develhope", role: "Java Course Creator", start: [2022, 10], end: [2023, 3], plate: "DH",
+      desc: "Designed the syllabus, recorded the content and wrote the exams.",
+      tags: ["Java", "SQL", "Spring Boot", "Internet basics"] },
+    { kind: "founder", org: "Statlocker", role: "Founder", start: [2025, 4, 14], end: null, now: true,
+      desc: "The stat tracking site for Valve's Deadlock.",
+      tags: ["Kotlin", "Spring Boot", "React", "MySQL", "AWS"] },
+];
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const toDate = a => new Date(a[0], a[1] - 1, a[2] || 1);
+const fmt = a => (a[2] ? a[2] + " " : "") + MONTHS[a[1] - 1] + " " + a[0];
+
+function monthsBetween(a, b) {
+    let m = (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+    if (b.getDate() < a.getDate()) m--;
+    return Math.max(m, 0);
+}
+function durText(m) {
+    const y = Math.floor(m / 12), r = m % 12;
+    if (y && r) return `${y} yr ${r} mo`;
+    if (y) return `${y} yr`;
+    return `${Math.max(r, 1)} mo`;
+}
+function yearsCoding(now) {
+    let y = now.getFullYear() - CODING_START.getFullYear();
+    if (now < new Date(now.getFullYear(), CODING_START.getMonth(), CODING_START.getDate())) y--;
+    return y;
+}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function render() {
+    const now = new Date();
+    const tl = document.getElementById("tl");
+    let lastYear = null, side = 0;
+
+    for (const e of ENTRIES) {
+        const k = KINDS[e.kind];
+        if (e.start[0] !== lastYear) {
+            const ym = document.createElement("div");
+            ym.className = "year-mark";
+            ym.innerHTML = `<span>${e.start[0]}</span>`;
+            tl.appendChild(ym);
+            lastYear = e.start[0];
+        }
+        const el = document.createElement("article");
+        el.className = `entry ${side++ % 2 ? "right" : "left"}${e.now ? " now" : ""}${e.kind === "origin" ? " origin" : ""}`;
+        el.style.setProperty("--kind", k.color);
+
+        const endDate = e.end ? toDate(e.end) : now;
+        const months = monthsBetween(toDate(e.start), endDate);
+        const dates = `${fmt(e.start)} to ${e.end ? fmt(e.end) : "now"}`;
+
+        let html = `<div class="node"></div><div class="card reveal">`;
+        if (e.now) html += `<img class="now-logo" src="assets/statlocker-logo-lockup.png" alt="Statlocker">`;
+        html += `<div class="card-head">`;
+        if (!e.now) html += `<div class="mono-plate">${esc(e.plate)}</div>`;
+        html += `<div class="card-titles"><h3 class="org">${esc(e.now ? "Founded Statlocker" : e.org)}</h3><div class="role">${esc(e.role)}</div></div></div>`;
+        html += `<div class="meta">`;
+        html += e.kind === "origin" ? `<span class="dates">${MONTHS[e.start[1] - 1]} ${e.start[0]}</span>`
+                                    : `<span class="dates">${dates}</span>`;
+        if (!e.noDur) html += `<span class="dur" ${e.now ? 'id="sl-dur"' : ""}>${durText(months)}</span>`;
+        html += e.now ? `<span class="live" style="margin-left:auto">Now</span>` : `<span class="kind-label">${k.label}</span>`;
+        html += `</div>`;
+        if (e.desc) html += `<p class="desc">${esc(e.desc)}</p>`;
+        if (e.code) html += `<div class="code"><span class="k">public class</span> <span class="s">Greg</span> {\n  <span class="k">public static void</span> main(String[] args) {\n    System.out.println(<span class="s">"Hello, World!"</span>);\n  }\n}</div>`;
+        if (e.points) html += `<ul class="points">${e.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>`;
+        if (e.now) {
+            const days = Math.floor((now - toDate(e.start)) / 864e5);
+            html += `<div class="now-stats">
+                <div><div class="v">${MONTHS[e.start[1] - 1]} ${e.start[0]}</div><div class="l">Founded</div></div>
+                <div><div class="v">${days.toLocaleString()}</div><div class="l">Days building</div></div>
+                <div><div class="v">Deadlock</div><div class="l">Game</div></div>
+            </div>`;
+        }
+        if (e.tags) html += `<div class="tags">${e.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>`;
+        html += `</div>`;
+        el.innerHTML = html;
+        tl.appendChild(el);
+    }
+
+    // Legend
+    document.getElementById("legend").innerHTML = ["education", "work", "teaching", "founder"]
+        .map(key => `<span><i style="background:${KINDS[key].color}"></i>${KINDS[key].label}</span>`).join("");
+
+    // Hero numbers
+    const years = yearsCoding(now);
+    const coded = monthsBetween(CODING_START, now);
+    document.getElementById("years-exact").textContent =
+        `${Math.floor(coded / 12)} yr ${coded % 12} mo · since ${MONTHS[CODING_START.getMonth()]} ${CODING_START.getFullYear()}, age 16`;
+    const slDays = Math.floor((now - toDate([2025, 4, 14])) / 864e5);
+    const roles = ENTRIES.filter(e => e.kind !== "origin" && e.kind !== "education").length;
+    countUp("years-num", years, 1100);
+    countUp("kpi-roles", roles, 900);
+    countUp("kpi-sl-days", slDays, 1300);
+}
+
+function countUp(id, target, ms) {
+    const el = document.getElementById(id);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = target.toLocaleString(); return; }
+    const t0 = performance.now();
+    const step = t => {
+        const p = Math.min((t - t0) / ms, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased).toLocaleString();
+        if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    // Background tabs throttle rAF; make sure the real number always lands.
+    setTimeout(() => { el.textContent = target.toLocaleString(); }, ms + 100);
+}
+
+function wireScroll() {
+    const tl = document.getElementById("tl");
+    const fill = document.getElementById("spine-fill");
+    const entries = [...tl.querySelectorAll(".entry, .year-mark")];
+
+    const io = new IntersectionObserver(items => {
+        for (const it of items) if (it.isIntersecting) { it.target.classList.add("in"); io.unobserve(it.target); }
+    }, { rootMargin: "0px 0px -10% 0px" });
+    tl.querySelectorAll(".reveal").forEach(r => io.observe(r));
+
+    let ticking = false;
+    const update = () => {
+        ticking = false;
+        const r = tl.getBoundingClientRect();
+        const line = innerHeight * 0.6;
+        const p = Math.min(Math.max((line - r.top) / r.height, 0), 1);
+        fill.style.transform = `scaleY(${p})`;
+        const reach = r.top + p * r.height;
+        for (const el of entries) {
+            const node = el.querySelector(".node, span");
+            el.classList.toggle("passed", node.getBoundingClientRect().top <= reach);
+        }
+    };
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener("resize", update);
+    update();
+}
+
+render();
+wireScroll();
+</script>
+</body>
+</html>
