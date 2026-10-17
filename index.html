@@ -307,8 +307,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ominous-green);
 .live::before { content: ""; width: 6px; height: 6px; background: var(--bg-color); animation: blink 1.4s steps(2, start) infinite; }
 @keyframes blink { to { visibility: hidden; } }
 .now-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: var(--space-lg); border: 1px solid var(--border-color); }
-.now-stats div { padding: var(--space-md); text-align: center; background: var(--card-inner-bg); }
-.now-stats div + div { border-left: 1px solid var(--border-color); }
+.now-stats > div { padding: var(--space-md); text-align: center; background: var(--card-inner-bg); }
+.now-stats > div + div { border-left: 1px solid var(--border-color); }
 .now-stats .v { font-family: var(--font-data); font-weight: 700; font-size: var(--font-xl); color: var(--ominous-green); font-variant-numeric: tabular-nums; line-height: 1.1; }
 .now-stats .l { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); font-size: var(--font-xs); color: var(--text-secondary); }
 
@@ -366,7 +366,7 @@ footer .contact a:hover { text-decoration: underline; }
 }
 @media (max-width: 414px) {
     .now-stats { grid-template-columns: 1fr; }
-    .now-stats div + div { border-left: 0; border-top: 1px solid var(--border-color); }
+    .now-stats > div + div { border-left: 0; border-top: 1px solid var(--border-color); }
 }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -463,6 +463,9 @@ const ENTRIES = [
     { kind: "teaching", org: "Develhope", role: "Java Course Creator", start: [2022, 10], end: [2023, 3], plate: "DH", logo: "develhope",
       desc: "Designed and recorded the course, turning the syllabus into lessons.",
       tags: ["Java", "SQL", "Spring Boot", "Internet basics"] },
+    { kind: "founder", org: "Solo Founder", role: "Independent products · alongside OPPI", start: [2024, 1], end: [2025, 4], plate: "SF",
+      desc: "Built and launched my own products, learning what the market actually wants.",
+      tags: ["Product", "Launches", "Go to market"] },
     { kind: "founder", org: "Statlocker", role: "Founder", start: [2025, 4, 14], end: null, now: true,
       desc: "The stat tracking site for Valve's Deadlock.",
       tags: ["Kotlin", "Spring Boot", "React", "MySQL", "AWS"] },
