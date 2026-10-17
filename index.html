@@ -423,6 +423,7 @@ footer .contact a:hover { text-decoration: underline; }
 <script>
 // Coding started at 16, Java at college. Everything that says "years" is computed from this.
 const CODING_START = new Date(2012, 8, 1);
+const SNAPSHOT = new URLSearchParams(location.search).has("snapshot");
 
 const KINDS = {
     origin:    { label: "Origin",    color: "#69e799" },
@@ -557,7 +558,7 @@ function render() {
 
 function countUp(id, target, ms) {
     const el = document.getElementById(id);
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = target.toLocaleString(); return; }
+    if (SNAPSHOT || matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = target.toLocaleString(); return; }
     const t0 = performance.now();
     const step = t => {
         const p = Math.min((t - t0) / ms, 1);
@@ -579,6 +580,15 @@ function wireScroll() {
         for (const it of items) if (it.isIntersecting) { it.target.classList.add("in"); io.unobserve(it.target); }
     }, { rootMargin: "0px 0px -10% 0px" });
     tl.querySelectorAll(".reveal").forEach(r => io.observe(r));
+
+    // ?snapshot renders the finished state for the static image on the GitHub profile README.
+    if (SNAPSHOT) {
+        io.disconnect();
+        tl.querySelectorAll(".reveal").forEach(r => r.classList.add("in"));
+        entries.forEach(el => el.classList.add("passed"));
+        fill.style.transform = "scaleY(1)";
+        return;
+    }
 
     let ticking = false;
     const update = () => {
