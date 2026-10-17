@@ -248,7 +248,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ominous-green);
     font-family: var(--font-display); font-weight: 700; font-size: var(--font-md);
     color: var(--kind); letter-spacing: 0.02em;
 }
-.mono-plate img { width: 100%; height: 100%; display: block; }
+.mono-plate.logo { padding: 0; overflow: hidden; border-color: var(--border-strong); }
+.mono-plate img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .card-titles { min-width: 0; flex: 1; }
 .org {
     font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
@@ -437,30 +438,30 @@ const KINDS = {
 const ENTRIES = [
     { kind: "origin", org: "First line of Java", role: "Age 16, college", start: [2012, 9], end: null, noDur: true,
       desc: "Started coding in Java for college. Never stopped.", plate: "16", code: true },
-    { kind: "education", org: "Bournemouth University", role: "BSc Software Engineering · First Class Honours", start: [2014, 9], end: [2018, 6], plate: "BU",
+    { kind: "education", org: "Bournemouth University", role: "BSc Software Engineering · First Class Honours", start: [2014, 9], end: [2018, 6], plate: "BU", logo: "bournemouth",
       desc: "Four year degree with a year in industry.", tags: ["Java", "Software Engineering", "Weightlifting team"] },
-    { kind: "work", org: "JPMorgan Chase & Co.", role: "Technical Analyst Placement Intern", start: [2016, 7], end: [2017, 6], plate: "JP",
+    { kind: "work", org: "JPMorgan Chase & Co.", role: "Technical Analyst Placement Intern", start: [2016, 7], end: [2017, 6], plate: "JP", logo: "jpmorgan",
       desc: "Small agile team building a RESTful platform for automated regression testing.",
       tags: ["Java", "Spring", "Hibernate", "SQL", "AngularJS"] },
-    { kind: "work", org: "Bournemouth University", role: "Undergraduate Software Consultant", start: [2018, 5], end: [2018, 8], plate: "BU",
+    { kind: "work", org: "Bournemouth University", role: "Undergraduate Software Consultant", start: [2018, 5], end: [2018, 8], plate: "BU", logo: "bournemouth",
       desc: "Hand picked by my dissertation supervisor to build a plugin based web scraper.", tags: ["Java", "Web scraping"] },
-    { kind: "education", org: "University of Sussex", role: "MSc Advanced Computer Science · First Class", start: [2018, 9], end: [2019, 9], plate: "US",
+    { kind: "education", org: "University of Sussex", role: "MSc Advanced Computer Science · First Class", start: [2018, 9], end: [2019, 9], plate: "US", logo: "sussex",
       desc: "Postgraduate study, alongside client work." },
-    { kind: "work", org: "Catalyst Property Finance", role: "Independent Software Consultant", start: [2018, 9], end: [2019, 9], plate: "CP",
+    { kind: "work", org: "Catalyst Property Finance", role: "Independent Software Consultant", start: [2018, 9], end: [2019, 9], plate: "CP", logo: "catalyst",
       desc: "Took a client through the full development lifecycle to an enterprise system automating their operations." },
-    { kind: "work", org: "Adyen", role: "Software Engineer · Amsterdam", start: [2019, 9], end: [2020, 12], plate: "AD",
+    { kind: "work", org: "Adyen", role: "Software Engineer · Amsterdam", start: [2019, 9], end: [2020, 12], plate: "AD", logo: "adyen",
       desc: "Payments at scale for Google, Netflix, Uber, Airbnb and more.",
       points: ["Built the card data import / export tool used across Adyen", "Product owner of Autorescue: ML picked retry dates for billing"],
       tags: ["Java", "Machine learning", "FinTech"] },
-    { kind: "teaching", org: "MentorCruise", role: "Mentor", start: [2019, 12], end: [2023, 3], plate: "MC",
+    { kind: "teaching", org: "MentorCruise", role: "Mentor", start: [2019, 12], end: [2023, 3], plate: "MC", logo: "mentorcruise",
       desc: "Mentoring new engineers, 4.9 stars across reviews." },
-    { kind: "work", org: "Catalyst Property Finance", role: "Head of Data · Independent Software Engineer", start: [2020, 11], end: [2023, 3], plate: "CP",
+    { kind: "work", org: "Catalyst Property Finance", role: "Head of Data · Independent Software Engineer", start: [2020, 11], end: [2023, 3], plate: "CP", logo: "catalyst",
       desc: "Software to analyse, automate and scale the business, including proprietary marketing tooling.",
       tags: ["Data", "Automation", "AWS", "Docker"] },
-    { kind: "founder", org: "OPPI", role: "Founder · Opportunity starts here", start: [2022, 7], end: [2025, 4], plate: "OP",
+    { kind: "founder", org: "OPPI", role: "Founder · Opportunity starts here", start: [2022, 7], end: [2025, 4], plate: "OP", logo: "oppi",
       desc: "Took the Catalyst marketing software to market with AI on top.", tags: ["AI", "SaaS"] },
-    { kind: "teaching", org: "Develhope", role: "Java Course Creator", start: [2022, 10], end: [2023, 3], plate: "DH",
-      desc: "Designed the syllabus, recorded the content and wrote the exams.",
+    { kind: "teaching", org: "Develhope", role: "Java Course Creator", start: [2022, 10], end: [2023, 3], plate: "DH", logo: "develhope",
+      desc: "Designed and recorded the course, turning the syllabus into lessons.",
       tags: ["Java", "SQL", "Spring Boot", "Internet basics"] },
     { kind: "founder", org: "Statlocker", role: "Founder", start: [2025, 4, 14], end: null, now: true,
       desc: "The stat tracking site for Valve's Deadlock.",
@@ -515,7 +516,7 @@ function render() {
         let html = `<div class="node"></div><div class="card reveal">`;
         if (e.now) html += `<img class="now-logo" src="assets/statlocker-logo-lockup.png" alt="Statlocker">`;
         html += `<div class="card-head">`;
-        if (!e.now) html += `<div class="mono-plate">${esc(e.plate)}</div>`;
+        if (!e.now) html += e.logo ? `<div class="mono-plate logo"><img src="assets/logos/${e.logo}.png" alt="${esc(e.org)} logo"></div>` : `<div class="mono-plate">${esc(e.plate)}</div>`;
         html += `<div class="card-titles"><h3 class="org">${esc(e.now ? "Founded Statlocker" : e.org)}</h3><div class="role">${esc(e.role)}</div></div></div>`;
         html += `<div class="meta">`;
         html += e.kind === "origin" ? `<span class="dates">${MONTHS[e.start[1] - 1]} ${e.start[0]}</span>`
